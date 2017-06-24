@@ -9,23 +9,21 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
+import Cell from "./app/Cell";
 
 export default class RNExample extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <View style={{height: 80,width: "100%", backgroundColor:"#363f5e"}}>
+          <Text style={{color: "#fff", fontSize: 18,fontWeight:"bold",textAlign: "center",marginTop:46}}>工作台</Text>
+        </View>
+        <Cell count="40" title="客户管理" parity="odd"/>
+        <Cell count="50" title="业务管理" parity="even"/>
+        <Cell count="60" title="贷后管理" parity="odd"/>
       </View>
     );
   }
@@ -34,20 +32,9 @@ export default class RNExample extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    backgroundColor: '#edf1fc'
+  }
 });
 
 AppRegistry.registerComponent('RNExample', () => RNExample);
