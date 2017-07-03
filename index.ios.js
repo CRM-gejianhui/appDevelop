@@ -6,12 +6,12 @@
 
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import BusinessDetail from "./src/business/BusinessDetail";
+import Login from "./src/Login";
 
 export default class RNExample extends Component {
   render() {
     return (
-      <BusinessDetail/>
+      <Login/>
     );
   }
 }
