@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   cell: {
     width: '94%',
-    height: 120,
+    height: 110,
     backgroundColor: "#fff",
     borderWidth: 1,
     borderStyle: "solid",

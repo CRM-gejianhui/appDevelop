@@ -22,6 +22,45 @@ const styles = StyleSheet.create({
     borderRadius:51,
     justifyContent: "center",
     alignItems: 'center',
+  },
+  userNameDec: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  innerUserView: {
+    marginTop: 30,
+    height: "38%",
+    justifyContent: "center"
+  },
+  bossImage: {
+    width:30,
+    height:30
+  },
+  bossInput: {
+    flex:1,
+    marginLeft:10,
+    height: 40,
+    color: "#606f98"
+  },
+  bossButton: {
+    width: "100%",
+    height: 40,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "transparent",
+    backgroundColor: "#559aff",
+    borderRadius: 5,
+    marginTop: 40,
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  inputContainer: {
+    width: "100%",
+    borderColor: "#606f98",
+    borderBottomWidth: 1,
+    flexDirection:'row',
+    marginTop: 12,
   }
 });
 
@@ -85,20 +124,20 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{marginTop: 30, height: "40%",justifyContent: "center"}}>
+        <View style={styles.innerUserView}>
           <View style={styles.userName}>
-            <Text style={{color: "#fff",fontSize: 16,fontWeight: "bold"}}>Demon</Text>
+            <Text style={styles.userNameDec}>Demon</Text>
           </View>
         </View>
-        <View style={{width: "100%", borderColor: "#606f98", borderBottomWidth: 1, flexDirection:'row'}}>
-          <Image source={require("./images/head.png")} style={{width:30,height:30}}/>
-          <TextInput onChangeText={this.changeUserName} autoCorrect={false} autoCapitalize="none" style={{flex:1, height: 40, color: "#606f98",marginLeft:10}} placeholder="请输入手机号" placeholderTextColor="#606f98"/>
+        <View style={styles.inputContainer}>
+          <Image source={require("./images/head.png")} style={styles.bossImage}/>
+          <TextInput onChangeText={this.changeUserName} autoCorrect={false} autoCapitalize="none" style={styles.bossInput} placeholder="请输入手机号" placeholderTextColor="#606f98"/>
         </View>
-        <View style={{width: "100%", borderColor: "#606f98", borderBottomWidth: 1, marginTop: 12, flexDirection:'row'}}>
-          <Image source={require("./images/password.png")} style={{width:30,height:30}}/>
-          <TextInput onChangeText={this.changePwd} secureTextEntry autoCapitalize="none" style={{flex:1, marginLeft:10, height: 40, color: "#606f98"}} placeholder="请输入密码" placeholderTextColor="#606f98"/>
+        <View style={styles.inputContainer}>
+          <Image source={require("./images/password.png")} style={styles.bossImage}/>
+          <TextInput onChangeText={this.changePwd} secureTextEntry autoCapitalize="none" style={styles.bossInput} placeholder="请输入密码" placeholderTextColor="#606f98"/>
         </View>
-        <View style={{width: "100%", height: 40, borderWidth: 1, borderStyle: "solid", borderColor: "transparent", backgroundColor: "#559aff", borderRadius: 5, marginTop: 40, paddingLeft: 5, paddingRight: 5}}>
+        <View style={styles.bossButton}>
           <Button
             title="登 陆"
             color="#fff"
