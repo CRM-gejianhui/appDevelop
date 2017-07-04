@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet,TouchableHighlight } from "react-native";
 import Cell from "./Cell";
 
 const styles = StyleSheet.create({
@@ -63,11 +63,15 @@ class BusinessDetail extends React.Component {
         </View>
         <View style={styles.footer}>
           <View style={styles.footerContent}>
-            <Image source={ activeKey === 1 ? activePeople : people} style={{width:26,height:26}} />
+            <TouchableHighlight onPress={()=> {this.setState({activeKey: 1})}}>
+              <Image source={ activeKey === 1 ? activePeople : people} style={{width:26,height:26}} />
+            </TouchableHighlight>
             <Text style={{fontSize: 12, marginTop: 6, color: activeKey === 1 ? "#619af8" : "#2c2c2c"}}>工作区</Text>
           </View>
           <View style={styles.footerContent}>
-            <Image source={ activeKey !== 1 ? activePeople : people} style={{width:26,height:26}} />
+            <TouchableHighlight onPress={()=> {this.setState({activeKey: 2})}}>
+              <Image source={ activeKey !== 1 ? activePeople : people} style={{width:26,height:26}} />
+            </TouchableHighlight>
             <Text style={{fontSize: 12, marginTop: 6, color: activeKey !== 1 ? "#619af8" : "#2c2c2c"}}>我的</Text>
           </View>
         </View>
