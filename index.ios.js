@@ -11,8 +11,18 @@ import BusinessDetail from "./src/business/BusinessDetail";
 import { StackNavigator } from 'react-navigation';
 
 const App = StackNavigator({
-  Login: {screen: Login},
-  BusinessDetail: {screen: BusinessDetail},
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null
+    }
+  },
+  BusinessDetail: {
+    screen: BusinessDetail,
+    navigationOptions: {
+      header: null
+    }
+  },
 });
 
 export default class RNExample extends Component {

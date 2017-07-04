@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, TextInput, Image, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Image, Button, StyleSheet, AsyncStorage } from "react-native";
+import Storage from "./util/Storage";
 
 const styles = StyleSheet.create({
   container: {
@@ -34,21 +35,8 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleSubmit() {
-
-    const f = new FormData();
-    // fetch('http://apicrm.nongfenqi.net/user/login', {
-    //   method: 'POST',
-    //   headers: {
-    //   },
-    //   body: JSON.stringify({
-    //     firstParam: 'yourValue',
-    //     secondParam: 'yourOtherValue',
-    //   })
-    // })
-    // .then((result) => {
-
-    // })
 
     fetch('http://apicrm.nongfenqi.net/user/login', {
       method: 'POST',
@@ -80,6 +68,10 @@ class Login extends React.Component {
       return response.json()
     })
       .then(result => {
+        const data = result.data || {};
+        console.log(data.token.accessToken,'data.token.accessToken')
+        Storage.save("token",data.token.accessToken);
+        console.log(Storage.get("token"),'----token');
         const { navigate } = this.props.navigation;
         navigate('BusinessDetail');
       })
@@ -98,11 +90,11 @@ class Login extends React.Component {
         </View>
         <View style={{width: "100%", borderColor: "#606f98", borderBottomWidth: 1, flexDirection:'row'}}>
           <Image source={require("./images/head.png")} style={{width:30,height:30}}/>
-          <TextInput style={{flex:1, height: 40, color: "#606f98",marginLeft:10}} placeholder="请输入手机号" placeholderTextColor="#606f98"/>
+          <TextInput onChangeText={value =>{console.log(value)}} autoCorrect={false} autoCapitalize="none" style={{flex:1, height: 40, color: "#606f98",marginLeft:10}} placeholder="请输入手机号" placeholderTextColor="#606f98"/>
         </View>
         <View style={{width: "100%", borderColor: "#606f98", borderBottomWidth: 1, marginTop: 12, flexDirection:'row'}}>
           <Image source={require("./images/password.png")} style={{width:30,height:30}}/>
-          <TextInput style={{flex:1, marginLeft:10, height: 40, color: "#606f98"}} placeholder="请输入密码" placeholderTextColor="#606f98"/>
+          <TextInput secureTextEntry autoCapitalize="none" style={{flex:1, marginLeft:10, height: 40, color: "#606f98"}} placeholder="请输入密码" placeholderTextColor="#606f98"/>
         </View>
         <View style={{width: "100%", height: 40, borderWidth: 1, borderStyle: "solid", borderColor: "transparent", backgroundColor: "#559aff", borderRadius: 5, marginTop: 40, paddingLeft: 5, paddingRight: 5}}>
           <Button
