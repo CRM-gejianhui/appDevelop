@@ -4,10 +4,14 @@ import Storage from "./util/Storage";
 import ApiUtil from "./util/ApiUtil";
 
 const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: '#363f5e'
+  },
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#363f5e',
     paddingLeft: 50,
     paddingRight: 50
   },
@@ -61,6 +65,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flexDirection:'row',
     marginTop: 12,
+  },
+  help: {
+    width: "100%",
+    textAlign: "center",
+    color: "#5192f0"
   }
 });
 
@@ -123,26 +132,31 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.innerUserView}>
-          <View style={styles.userName}>
-            <Text style={styles.userNameDec}>Demon</Text>
+      <View style={styles.view}>
+        <View style={styles.container}>
+          <View style={styles.innerUserView}>
+            <View style={styles.userName}>
+              <Text style={styles.userNameDec}>Demon</Text>
+            </View>
+          </View>
+          <View style={styles.inputContainer}>
+            <Image source={require("./images/head.png")} style={styles.bossImage}/>
+            <TextInput onChangeText={this.changeUserName} autoCorrect={false} autoCapitalize="none" style={styles.bossInput} placeholder="请输入手机号" placeholderTextColor="#606f98"/>
+          </View>
+          <View style={styles.inputContainer}>
+            <Image source={require("./images/password.png")} style={styles.bossImage}/>
+            <TextInput onChangeText={this.changePwd} secureTextEntry autoCapitalize="none" style={styles.bossInput} placeholder="请输入密码" placeholderTextColor="#606f98"/>
+          </View>
+          <View style={styles.bossButton}>
+            <Button
+              title="登 陆"
+              color="#fff"
+              onPress={this.handleSubmit}
+            />
           </View>
         </View>
-        <View style={styles.inputContainer}>
-          <Image source={require("./images/head.png")} style={styles.bossImage}/>
-          <TextInput onChangeText={this.changeUserName} autoCorrect={false} autoCapitalize="none" style={styles.bossInput} placeholder="请输入手机号" placeholderTextColor="#606f98"/>
-        </View>
-        <View style={styles.inputContainer}>
-          <Image source={require("./images/password.png")} style={styles.bossImage}/>
-          <TextInput onChangeText={this.changePwd} secureTextEntry autoCapitalize="none" style={styles.bossInput} placeholder="请输入密码" placeholderTextColor="#606f98"/>
-        </View>
-        <View style={styles.bossButton}>
-          <Button
-            title="登 陆"
-            color="#fff"
-            onPress={this.handleSubmit}
-          />
+        <View style={{height: 60}}>
+          <Text style={styles.help}>若忘记密码请拨打400-19001</Text>
         </View>
       </View>
     )
