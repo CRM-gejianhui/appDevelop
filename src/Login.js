@@ -114,13 +114,14 @@ class Login extends React.Component {
       username: userName
     };
 
-    ApiUtil.request("http://apicrm.nongfenqi.net/user/login", params, "POST")
+    ApiUtil.request("http://apicrm.nongfenqi.net/user/login", params, "POST", true)
       .then(result => {
         if(result.retCode === 0) {
           const data = result.data || {};
           Storage.save("token",data.token.accessToken);
           const { navigate } = this.props.navigation;
           navigate('BusinessDetail');
+
         } else {
           alert(result.retMsg);
         }

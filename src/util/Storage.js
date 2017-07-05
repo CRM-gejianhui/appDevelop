@@ -8,9 +8,14 @@ export default {
    * 获取
    * @param key
    */
-  get(key) {
-    return AsyncStorage.getItem(key).then((value) => {
-      return JSON.parse(value);
+  get(key,callback) {
+    AsyncStorage.getItem(key, (error, object) => {
+      if (error) {
+        console.log('Error:' + error.message);
+        callback();
+      } else {
+        callback(JSON.parse(object));
+      }
     })
   },
 

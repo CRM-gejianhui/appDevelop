@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, Image, StyleSheet,TouchableOpacity  } from "react-native";
 import Cell from "./Cell";
+import ApiUtil from "./../util/ApiUtil";
+import Storage from "./../util/Storage";
 
 const styles = StyleSheet.create({
   view:{
@@ -44,12 +46,25 @@ class BusinessDetail extends React.Component {
     super(props);
 
     this.state = {
-      activeKey: 1
+      activeKey: 1,
+      token: null,
+      data: {}
     }
   }
 
+  componentDidMount() {
+    Storage.get("token", token => {
+      if(token) {
+        ApiUtil.request("http://apicrm.nongfenqi.net/index/count", {}, "GET", false, token)
+          .then(result => {
+            this.setState({data: result.data || {}})
+          })
+      }
+    });
+  }
+
   render() {
-    const { activeKey } = this.state;
+    const { activeKey, data } = this.state;
     const activePeople = require("./../images/activePeople.png");
     const people = require("./../images/people.png");
     return (
@@ -58,8 +73,8 @@ class BusinessDetail extends React.Component {
           <View style={styles.titleView}>
             <Text style={styles.title}>工作台</Text>
           </View>
-          <Cell count="40" title="客户管理" parity="odd"/>
-          <Cell count="50" title="业务管理" parity="even"/>
+          <Cell count={data.customerCount} title="客户管理" parity="odd"/>
+          <Cell count={data.applyOrderCount} title="业务管理" parity="even"/>
         </View>
         <View style={styles.footer}>
           <View style={styles.footerContent}>
