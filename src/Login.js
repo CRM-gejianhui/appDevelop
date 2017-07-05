@@ -118,7 +118,7 @@ class Login extends React.Component {
       .then(result => {
         if(result.retCode === 0) {
           const data = result.data || {};
-          Storage.save("token",data.token.accessToken);
+          Storage.save("token",data.token && data.token.accessToken);
           const { navigate } = this.props.navigation;
           navigate('BusinessDetail');
 
